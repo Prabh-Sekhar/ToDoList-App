@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do List App!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1>My To-Do List</h1>
+            <p>Stay organized and get things done!</p>
+        </div>
+    
+        <div class="newTasks">
+            <form>
+                <input type="text" placeholder="Add a new task">
+                <button>+ Add Task</button>
+            </form>
+        </div>
+    
+        <div class="initialTaskBar">
+            <span class="material-symbols-outlined">circle</span>
+            <h3>No tasks yet!</h3>
+            <p>Add your first task to get started!</p>
+        </div>
+    
+        <div class="activeTaskBar">
+            <div class="taskStatus">
+                <span>
+                    <p>1</p>
+                    <p>Pending</p>
+                </span>
+                <span>
+                    <p>0</p>
+                    <p>Completed</p>
+                </span>
+            </div>
+            <div class="tasks">
+                <span class="material-symbols-outlined">circle</span>
+                <p>To create to do list app</p>
+                <span class="material-symbols-outlined">delete</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
