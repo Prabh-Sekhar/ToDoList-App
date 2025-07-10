@@ -16,9 +16,9 @@
         </div>
     
         <div class="newTasks">
-            <form>
-                <input type="text" placeholder="Add a new task">
-                <button>+ Add Task</button>
+            <form id="form">
+                <input type="text" id="task" placeholder="Add a new task...">
+                <button type="submit">+ Add Task</button>
             </form>
         </div>
     
@@ -30,21 +30,31 @@
     
         <div class="activeTaskBar">
             <div class="taskStatus">
-                <span>
-                    <p>1</p>
+                <span id="pending">
+                    <h1>1</h1>
                     <p>Pending</p>
                 </span>
-                <span>
-                    <p>0</p>
+                <span id="completed">
+                    <h1>0</h1>
                     <p>Completed</p>
                 </span>
             </div>
-            <div class="tasks">
-                <span class="material-symbols-outlined">circle</span>
-                <p>To create to do list app</p>
-                <span class="material-symbols-outlined">delete</span>
+            <!-- <div class="tasks">
+                <div class="task-content">
+                    <button class="checkbox"></button>
+                    <p>To create to do list app</p>                    
+                </div>
+                <span class="material-symbols-outlined delete">delete</span>
             </div>
+            <div class="tasks">
+                <div class="task-content">
+                    <button class="checkbox" type="submit"></button>
+                    <p>To learn HTML CSS Basics</p>                    
+                </div>
+                <span class="material-symbols-outlined delete">delete</span>
+            </div> -->
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
