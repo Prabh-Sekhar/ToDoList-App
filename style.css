@@ -172,17 +172,23 @@ body {
     font-weight: 500;
 }
 
-.checkbox {
+.unchecked {
     color: grey;
     cursor: pointer;
-    border-radius: 50px;
-    padding: 9px;
-    border: 2px solid rgb(185, 185, 185);
-    background-color: white;
-
+    user-select: none;
 }
 
-.checkbox:hover {
+.unchecked:hover {
+    color: #3b82f6;
+}
+
+.checked {
+    color: grey;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checked:hover {
     color: #3b82f6;
 }
 
@@ -191,6 +197,7 @@ body {
     cursor: pointer;
     padding: 4px;
     border-radius: 10px;
+    user-select: none;
 }
 
 .delete:hover {

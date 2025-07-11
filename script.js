@@ -1,5 +1,4 @@
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-console.log(tasks);
 /* 
 tasks example for future reference
 [
@@ -12,12 +11,23 @@ function createNewTask(task) {
     //create outer div
     const taskDiv = document.createElement('div');
     taskDiv.setAttribute('class', 'tasks');
+    taskDiv.setAttribute('id', String(task.id));
     //create inner div
     const taskContentDiv = document.createElement('div');
     taskContentDiv.setAttribute('class', 'task-content');
     //create checkbox button
-    const button = document.createElement('button');
-    button.setAttribute('class', 'checkbox');
+    const button = document.createElement('span');
+
+    if(task.completed) {
+        button.setAttribute('class', 'material-symbols-outlined checked');
+        button.innerHTML = 'check_circle';
+
+    }
+    else {
+        button.setAttribute('class', 'material-symbols-outlined unchecked');
+        button.innerHTML = 'circle';
+    }
+
     //create paragraph element
     const p = document.createElement('p');
     p.innerHTML = task.text;
@@ -25,17 +35,48 @@ function createNewTask(task) {
     const del = document.createElement('span');
     del.setAttribute('class', 'material-symbols-outlined delete');
     del.innerHTML = 'delete';
-       
+    
+
     taskDiv.appendChild(taskContentDiv);
     taskDiv.appendChild(del);
     taskContentDiv.appendChild(button);
     taskContentDiv.appendChild(p);
     document.querySelector('.activeTaskBar').appendChild(taskDiv);
+
+    del.addEventListener('click', (e) => {
+        deleteTaskFromStorage(task.id);
+        taskDiv.remove();
+        location.reload();
+    });
+
+    button.addEventListener('click', () => {
+        console.log("Click");
+        toggleCompletion(task.id);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        
+        task.completed = !task.completed;
+
+        if(task.completed) {
+            button.innerHTML = 'check_circle';
+            button.classList.remove('unchecked');
+            button.classList.add('checked');
+        } 
+        else {
+            button.innerHTML = 'circle';
+            button.classList.remove('checked');
+            button.classList.add('unchecked');
+        }
+        
+        let pending = tasks.filter(task => !task.completed);
+        let completed = tasks.filter(task => task.completed);
+        document.querySelector('#pending > h1').innerHTML = pending.length;
+        document.querySelector('#completed > h1').innerHTML = completed.length;
+    });
 }
 
 
     
-if(localStorage.length) {
+if(tasks.length) {
     document.querySelector('.initialTaskBar').style.display = "none";
     document.querySelector('.activeTaskBar').style.display = "flex";
     let pending = tasks.filter((task) => {
@@ -59,10 +100,12 @@ document.querySelector('#form').addEventListener('submit', function(e) {
     // e.preventDefault();
 
     const task = document.querySelector('#task');
-    addTask(task.value);
+    addTaskToStorage(task.value);
 });
 
-function addTask(task) {
+
+
+function addTaskToStorage(task) {
     const newTask = {
         id: Date.now(),
         text: task,
@@ -72,13 +115,13 @@ function addTask(task) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
-function markComplete(id) {
+function toggleCompletion(id) {
     tasks = tasks.map((task) => {
         return (task.id === id) ? {...task, completed: !task.completed} : task
     });
 }
 
-function deleteTask(id) {
+function deleteTaskFromStorage(id) {
     tasks = tasks.filter((task) => task.id !== id);
     localStorage.setItem("tasks", JSON.stringify(tasks));
 };
