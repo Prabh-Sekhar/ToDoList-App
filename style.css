@@ -5,56 +5,63 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: aliceblue;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40%;
-    min-width: 400px;
-    margin: auto;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .heading {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .heading h1{
-    font-size: 60px;
+    font-size: clamp(32px, 8vw, 60px);
     margin-top: 10px;
     margin-bottom: 0px;
+    line-height: 1.2;
 }
 
 .heading p {
     color: rgb(88, 88, 88);
-    font-size: 22px;
+    font-size: clamp(16px, 4vw, 22px);
     margin-top: 5px;
     margin-bottom: 40px;
 }
 
 .newTasks {
     background-color: white;
-    min-width: 100%;
+    width: 100%;
     margin: auto;
-    padding: 20px 30px;
+    padding: 20px;
     border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .newTasks form {
     display: flex;
-    gap: 5px;
+    gap: 10px;
     flex-wrap: nowrap;
 }
 
 .newTasks form input{
     padding: 15px 10px;
-    width: 85%;
+    flex: 1;
     border-radius: 10px;
-    border-width: 0.5px;
-    border-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    min-width: 0px;
 }
 
 .newTasks form input::placeholder {
@@ -70,6 +77,8 @@ body {
     font-weight: 700;
     flex-shrink: 0;
     transition: 0.2s ease 0s;
+    font-size: 14px;
+    white-space: nowrap;
 }
 
 .newTasks form button:hover {
@@ -86,29 +95,32 @@ body {
     width: 100%;
     padding: 20px 10px;
     border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .initialTaskBar span {
-    font-size: 70px;
+    font-size: clamp(50px, 15vw, 70px);
     color: grey;
 }
 
 .initialTaskBar h3 {
-    font-size: 30px;
+    font-size: clamp(20px, 6vw, 30px);
     font-weight: 500;
     color: rgb(88, 88, 88);
     margin-bottom: 10px;
     margin-top: 15px;
+    text-align: center;
 }
 
 .initialTaskBar p {
     margin-top: 0px;
-    font-size: 18px;
+    font-size: clamp(14px, 4vw, 18px);
     color: rgb(88, 88, 88);
+    text-align: center;
 }
 
 .activeTaskBar {
-    display: flex;
+    display: none;
     flex-direction: column;
     width: 100%;
     margin-top: 50px;
@@ -119,37 +131,35 @@ body {
     width: 100%;
     margin: 0px;
     flex-wrap: nowrap;
+    gap: 10px;
 }
 
 .taskStatus span {
     background-color: white;
     margin-bottom: 50px;
     text-align: center;
-    width: 100%;
+    flex: 1;
     border-radius: 20px;
-    padding: 10px;
+    padding: 15px 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-#pending {
-    margin-right: 10px;
+.taskStatus span h1 {
+    font-size: clamp(24px, 6vw, 36px);
+    margin: 0;
+}
+
+.taskStatus span p {
+    font-size: clamp(12px, 3vw, 16px);
+    margin: 5px 0 0 0;
 }
 
 #pending h1 {
     color: #3b82f6;
 }
 
-#completed {
-    margin-left: 10px;
-}
-
 #completed h1 {
     color: rgb(26, 165, 26);
-}
-
-.activeTaskBar {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .tasks {
@@ -157,10 +167,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px 30px;
+    padding: 15px 20px;
     border-radius: 20px;
     flex-wrap: nowrap;
     margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .task-content {
@@ -170,12 +181,21 @@ body {
     flex-wrap: nowrap;
     color: rgb(88, 88, 88);
     font-weight: 500;
+    flex: 1;
+    min-width: 0;
+}
+
+.task-content p {
+    margin: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .unchecked {
     color: grey;
     cursor: pointer;
     user-select: none;
+    flex-shrink: 0;
 }
 
 .unchecked:hover {
@@ -186,6 +206,7 @@ body {
     color: grey;
     cursor: pointer;
     user-select: none;
+    flex-shrink: 0;
 }
 
 .checked:hover {
@@ -195,12 +216,108 @@ body {
 .delete {
     color: grey;
     cursor: pointer;
-    padding: 4px;
+    padding: 8px;
     border-radius: 10px;
     user-select: none;
+    flex-shrink: 0;
 }
 
 .delete:hover {
     color: red;
     background-color: rgba(255, 0, 0, 0.1);
+}
+
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .heading h1 {
+        font-size: 36px;
+    }
+
+    .heading p {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    .newTasks {
+        padding: 15px;
+    }
+
+    .newTasks form {
+        gap: 8px;
+    }
+
+    .newTasks form input {
+        padding: 12px 8px;
+        font-size: 16px;
+    }
+
+    .newTasks form button {
+        padding: 12px 12px;
+        font-size: 13px;
+    }
+
+    .tasks {
+        padding: 12px 15px;
+    }
+
+    .task-content {
+        gap: 8px;
+    }
+
+    .delete {
+        padding: 6px;
+    }
+
+    .initialTaskBar {
+        padding: 15px 10px;
+        margin-top: 30px;
+    }
+
+    .activeTaskBar {
+        margin-top: 30px;
+    }
+
+    .taskStatus span {
+        padding: 12px 8px;
+        margin-bottom: 30px;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .container {
+        width: 98%;
+        padding: 5px;
+    }
+
+    .heading h1 {
+        font-size: 28px;
+    }
+
+    .heading p {
+        font-size: 16px;
+    }
+
+    .newTasks form button {
+        padding: 12px 8px;
+        font-size: 12px;
+    }
+
+    .taskStatus {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .taskStatus span {
+        margin-bottom: 10px;
+    }
+
+    .taskStatus span:last-child {
+        margin-bottom: 30px;
+    }
 }
