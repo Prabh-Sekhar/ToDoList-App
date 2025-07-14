@@ -60,11 +60,14 @@ function createNewTask(task) {
             button.innerHTML = 'check_circle';
             button.classList.remove('unchecked');
             button.classList.add('checked');
+            p.style.textDecoration = 'line-through';
+            p.style.color = 'grey';
         } 
         else {
             button.innerHTML = 'circle';
             button.classList.remove('checked');
             button.classList.add('unchecked');
+            p.style.textDecoration = 'none';
         }
         
         let pending = tasks.filter(task => !task.completed);
