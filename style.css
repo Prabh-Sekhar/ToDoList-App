@@ -2,9 +2,13 @@
     box-sizing: border-box;
 }
 
+html, body {
+    min-height: 100vh;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: aliceblue;
+    background: linear-gradient(135deg, #d0d9ff 0%, #abe5ff 100%);
     margin: 0;
     padding: 0;
 }
